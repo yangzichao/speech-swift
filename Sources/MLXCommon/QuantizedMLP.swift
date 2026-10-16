@@ -9,13 +9,13 @@ public class QuantizedMLP: Module {
     @ModuleInfo public var downProj: QuantizedLinear
 
     public init(hiddenSize: Int, intermediateSize: Int, groupSize: Int = 64, bits: Int = 4) {
-        self._gateProj.wrappedValue = QuantizedLinear(
+        self._gateProj.wrappedValue = QuantizedLinear.preQuantized(
             hiddenSize, intermediateSize, bias: false,
             groupSize: groupSize, bits: bits)
-        self._upProj.wrappedValue = QuantizedLinear(
+        self._upProj.wrappedValue = QuantizedLinear.preQuantized(
             hiddenSize, intermediateSize, bias: false,
             groupSize: groupSize, bits: bits)
-        self._downProj.wrappedValue = QuantizedLinear(
+        self._downProj.wrappedValue = QuantizedLinear.preQuantized(
             intermediateSize, hiddenSize, bias: false,
             groupSize: groupSize, bits: bits)
 
